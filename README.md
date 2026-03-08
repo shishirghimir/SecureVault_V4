@@ -23,7 +23,6 @@ A secure file vault application featuring LBPH face recognition with eye-open de
 
 ---
 
-
 ## 🛠️ Installation
 
 ### Prerequisites
@@ -38,6 +37,22 @@ pip install opencv-contrib-python pillow
 ### Run Application
 ```bash
 python securevault.py
+```
+
+---
+
+## 📦 Build Standalone EXE
+
+```bash
+# Install PyInstaller
+pip install pyinstaller
+
+# Build EXE (Windows)
+pyinstaller --onefile --windowed --icon=securevault.ico --name=SecureVault ^
+    --add-data "%CASCADE_PATH%haarcascade_frontalface_alt2.xml;cv2/data" ^
+    --add-data "%CASCADE_PATH%haarcascade_eye.xml;cv2/data" ^
+    --add-data "%CASCADE_PATH%haarcascade_eye_tree_eyeglasses.xml;cv2/data" ^
+    securevault.py
 ```
 
 ---
@@ -60,7 +75,6 @@ python securevault.py
 | Key Derivation | PBKDF2-HMAC-SHA256 (100,000 iterations) |
 | Face Recognition | OpenCV LBPH with histogram matching fallback |
 | Anti-Spoofing | Haar cascade eye detection (both eyes required) |
-
 
 ---
 
